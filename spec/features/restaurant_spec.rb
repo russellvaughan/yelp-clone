@@ -8,3 +8,14 @@ feature 'Create a restaurant' do
     expect(page).to have_content('Nando\'s 2')
   end
 end
+
+feature 'Restaurants can be modified' do 
+	scenario 'by editing' do
+		create_restaurant
+		click_link('Edit')
+		fill_in('Name', with: 'Fried Chicken World')
+    fill_in('Rating', with: 4)
+		click_button('Edit Restaurant')
+		expect(page).to have_content('Fried Chicken World 4')  
+	end
+end
