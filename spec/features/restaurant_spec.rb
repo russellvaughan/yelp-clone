@@ -18,4 +18,14 @@ feature 'Restaurants can be modified' do
 		click_button('Edit Restaurant')
 		expect(page).to have_content('Fried Chicken World 4')  
 	end
+
+  scenario 'by deleting' do
+    create_restaurant
+    click_link('Delete')
+    expect(page).not_to have_content('Nando\'s 2')
+    expect(current_path).to eq('/restaurants')  
+  end
+
+
+
 end
