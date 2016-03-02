@@ -1,17 +1,15 @@
 <doctype html>
 <html>
 <head>
-<style>
-
-input[type="text"], textarea {
-
-  background-color : red; 
-
-}
-</style>
 </head>
 <body>
 <% if @restaurant.errors.any? %>
+<style>
+
+input[type="text"], textarea {
+  background-color : red;
+}
+</style>
   <section id="errors" >
     <h2> <%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved: </h2>
     <ul>
