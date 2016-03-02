@@ -64,11 +64,28 @@ feature 'restaurants' do
 
     scenario 'removes a restaurant when a user clicks a delete link' do
       visit '/restaurants'
+      click_link 'Review KFC'
+      fill_in 'Thoughts', with:'some review'
+      select '4', from: 'Rating'
+      click_button 'Leave Review'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
 
+  end
+
+  context 'avarage rating' do
+    before {
+      rest = Restaurant.create name: 'KFC'
+      Review.create thoughts: 'some', rating: 1, restaurant_id: rest.id
+      Review.create thoughts: 'some more', rating: 5, restaurant_id: rest.id
+    }
+
+    scenario 'showing on main restaurants page' do
+      visit '/restaurants'
+      expect(page).to have_content 'KFC Average rating: 3'
+    end
   end
 
 end
