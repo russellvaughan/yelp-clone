@@ -39,3 +39,15 @@ feature "User can sign in and out" do
     end
   end
 end
+
+feature 'User can only edit restaurants which they have created' do
+  before do
+    sign_up_and_in
+    create_restaurant('kfc')
+    sign_up_and_in_2
+  end
+
+  it "cannot edit another users restaurant" do
+    expect(page).not_to have_link('Edit kfc')
+  end
+end

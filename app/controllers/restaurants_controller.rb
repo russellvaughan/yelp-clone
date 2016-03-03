@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-  before_action :authenticate_user!, :expect => [:index, :show]
+  before_action :authenticate_user!, :expect => [:index, :show,]
 
   def index
     @restaurants = Restaurant.all
@@ -33,8 +33,16 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
+    if user_owns_restaurant?
     @restaurant.update(restaurant_params)
+    else 
+    flash[:notice]="Cannot edit a restaurant you didn't create"
+    end
     redirect_to '/restaurants'
+  end
+
+  def user_owns_restaurant?
+   @restaurant.user == current_user 
   end
 
   def destroy
