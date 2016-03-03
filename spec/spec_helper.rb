@@ -18,6 +18,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'sign_up_and_in_helper'
+require 'create_restaurant_helper'
+require 'create_review_helper'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

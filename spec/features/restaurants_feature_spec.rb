@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'restaurants' do
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
       expect(page).to have_link 'Add a restaurant'
@@ -14,7 +14,7 @@ feature 'restaurants' do
   context 'restaurants have been added' do
     before do
       Restaurant.create(name: 'KFC')
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
     end
 
     scenario 'display restaurants' do
@@ -26,7 +26,7 @@ feature 'restaurants' do
 
   context 'creating restaurants' do
     scenario 'prompts user to fill out a form, then displays the new restaurant' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
@@ -38,7 +38,7 @@ feature 'restaurants' do
 
   context 'an invalid restaurants' do
     it 'does not let you submit a name thats is too short' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'Kf'
@@ -52,7 +52,7 @@ feature 'restaurants' do
     let!(:kfc) { Restaurant.create(name:'KFC')}
 
     scenario 'lets a user view a restaurant' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'KFC'
       expect(page).to have_content 'KFC'
@@ -64,7 +64,7 @@ feature 'restaurants' do
     before { Restaurant.create(name: 'KFC')}
 
     scenario 'let a user edit a restaurant' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
@@ -78,7 +78,7 @@ feature 'restaurants' do
     before {Restaurant.create name: 'KFC'}
 
     scenario 'removes a restaurant when a user clicks a delete link' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
@@ -86,7 +86,7 @@ feature 'restaurants' do
     end
 
     scenario 'removes a restaurant and deletes associated reviews' do
-      sign_up_and_in
+      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'Review KFC'
       fill_in "Thoughts", with: "so so"
