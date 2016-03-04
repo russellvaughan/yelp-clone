@@ -62,4 +62,32 @@ feature "Users can only add one review per restaurant" do
       expect(page).not_to have_link('Review Pizza Planet')
     end
   end
+
+  feature "Users can only delete a comment for a restaurant" do
+    context "whilst logged in" do
+      it "can delete comments" do
+        sign_up_and_in('user1@test.com')
+        create_restaurant('Pizza Planet')
+        create_review('Pizza Planet', 'Mmm...delicious pizza!', '5')
+        click_link('Delete Pizza Planet Review')
+        expect(current_path).to eq('/restaurants')
+        expect(page).not_to have_content('Mmm...delicious pizza!')
+      end
+    end
+  end
+
+  feature "Users can only delete a comment for a restaurant" do
+    context "whilst logged in" do
+      it "that they created" do
+        sign_up_and_in('user1@test.com')
+        create_restaurant('Pizza Planet')
+        create_review('Pizza Planet', 'Mmm...delicious pizza!', '5')
+        click_link('Delete Pizza Planet Review')
+        click_link('Sign out')
+        sign_up_and_in('user2@test.com')     
+        expect(page).not_to have_content('Delete Pizza Planet Review')
+      end
+    end
+  end
+
 end
