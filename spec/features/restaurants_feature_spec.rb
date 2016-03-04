@@ -61,10 +61,13 @@ feature 'restaurants' do
   end
 
   context 'editing restaurants' do
-    before { Restaurant.create(name: 'KFC')}
+    before  do 
+    sign_up_and_in('user1@test.com') 
+    create_restaurant('KFC')
+    end
 
     scenario 'let a user edit a restaurant' do
-      sign_up_and_in('user1@test.com')
+      
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
@@ -75,18 +78,18 @@ feature 'restaurants' do
 
   context 'deleting restaurants' do
 
-    before {Restaurant.create name: 'KFC'}
+    before  do 
+    sign_up_and_in('user1@test.com') 
+    create_restaurant('KFC')
+    end
 
     scenario 'removes a restaurant when a user clicks a delete link' do
-      sign_up_and_in('user1@test.com')
-      visit '/restaurants'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
 
     scenario 'removes a restaurant and deletes associated reviews' do
-      sign_up_and_in('user1@test.com')
       visit '/restaurants'
       click_link 'Review KFC'
       fill_in "Thoughts", with: "so so"
