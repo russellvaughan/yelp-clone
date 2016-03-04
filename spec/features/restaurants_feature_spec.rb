@@ -5,7 +5,6 @@ feature 'restaurants' do
     scenario 'should display a prompt to add a restaurant' do
       sign_up_and_in('user1@test.com')
       visit '/restaurants'
-      expect(page).to have_content 'No restaurants yet'
       expect(page).to have_link 'Add a restaurant'
     end
   end
