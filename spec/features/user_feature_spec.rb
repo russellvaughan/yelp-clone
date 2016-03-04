@@ -45,17 +45,18 @@ feature "User can sign in and out" do
 
   end
 
-  context 'when user has not created' do
-    it 'user can not delete/edit restaurants' do
-      visit ('/')
+  context 'reviewing restaurants' do
+    scenario 'user can only a restaurant once' do
+      visit '/restaurants'
       sign_up_and_in('vale@gmail.com')
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
       click_button 'Create Restaurant'
-      click_link('Sign out')
-      sign_up_and_in('makers@gmail.com')
-      expect(page).not_to have_link('Edit KFC')
-      expect(page).not_to have_link('Delete KFC')
+      click_link 'Review KFC'
+      fill_in 'Thoughts', with: 'so so'
+      select '3', from: 'Rating'
+      click_button 'Leave review'
+      expect(page).not_to have_link'Review KFC'
     end
   end
 

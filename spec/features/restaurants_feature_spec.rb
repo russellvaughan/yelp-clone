@@ -15,6 +15,7 @@ feature 'restaurants' do
 		end
 		scenario 'display restaurants' do
 		visit '/restaurants'
+		sign_up_and_in('vale@gmail.com')
 		expect(page).to have_content('KFC')
 		expect(page).not_to have_content('No restaurant yet')
 		end
@@ -48,6 +49,7 @@ feature 'restaurants' do
 		let!(:kfc){Restaurant.create(name:'KFC')}
 		scenario 'lets a user view a restaurant' do
 			visit '/restaurants'
+			sign_up_and_in('vale@gmail.com')
 			click_link 'KFC'
 			expect(page).to have_content 'KFC'
 			expect(current_path).to eq "/restaurants/#{kfc.id}"
@@ -80,6 +82,8 @@ feature 'restaurants' do
 			expect(page).to have_content "Restaurant deleted"
 		end
 	end
+
+	
 
 
 
