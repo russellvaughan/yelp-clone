@@ -19,19 +19,19 @@ ActiveRecord::Schema.define(version: 20160303222241) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.integer  "rating"
-    t.datetime "created_at",                                                           null: false
-    t.datetime "updated_at",                                                           null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "description"
-    t.integer  "user_id",     default: "nextval('restaurants_user_id_seq'::regclass)", null: false
+    t.integer  "user_id",     default: 0, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
     t.text     "thoughts"
     t.integer  "rating"
-    t.datetime "created_at",                                                         null: false
-    t.datetime "updated_at",                                                         null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "restaurant_id"
-    t.integer  "user_id",       default: "nextval('reviews_user_id_seq'::regclass)", null: false
+    t.integer  "user_id",       default: 0, null: false
   end
 
   add_index "reviews", ["restaurant_id"], name: "index_reviews_on_restaurant_id", using: :btree
