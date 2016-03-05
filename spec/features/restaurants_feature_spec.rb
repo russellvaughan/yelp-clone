@@ -100,4 +100,16 @@ feature 'restaurants' do
       expect(page).not_to have_content('KFC')
     end
   end
+
+  scenario 'displays an average rating for all reviews' do
+    sign_up_and_in('user1@test.com') 
+    create_restaurant('KFC')
+    create_review('KFC','so so', '3')
+    click_link 'Sign out'
+    sign_up_and_in('user2@test.com') 
+    create_review('KFC','Great!', '5')
+    expect(page).to have_content('Average rating: ★★★★☆')
+  end
+
+
 end
