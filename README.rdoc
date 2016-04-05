@@ -32,9 +32,3 @@ Working with views
 Understanding the relationship between link_to and Rails routing.
 Differentiating between business logic and presentation logic and understand where in Rails this code should be/
 identifying and utilizing the main Rails Rake tasks and generators.
-
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
