@@ -1,27 +1,39 @@
-== README
+Building a Yelp Clone in Ruby on Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Concepts learned:
 
-Things you may want to cover:
+The benefits of convention over configuration.
+The primary aspects of Rails that utilize this idiom.
+Understanding the asset pipeline.
+The meaning of skinny controllers over fat controllers and skinny models over fat models and mechanisms to address these.
+Working with models
 
-* Ruby version
+Discuss the role of migrations in relation to source code control and application versioning.
+Identify the issues that can arise when doing the following:
+Editing migrations.
+Deleting migrations.
+Using models in a migration.
+Apply the following features of ActiveRecord:
+Validations.
+Associations.
+Scopes.
+Understand the following features of ActiveRecord:
+Callbacks.
+Query interface.
+Working with controllers
 
-* System dependencies
+Understanding the relationship between resources and REST.
+Understanding nested routing and how to restrict resources routes using except and only.
+Describing the Rails routing process from browser request through to controller action.
+Understanding how to respond to requests for different formats (e.g. HTML/ JSON) on the same route.
+Describing controller filters and how these relate to controller inheritance.
+Working with views
 
-* Configuration
+Understanding the relationship between link_to and Rails routing.
+Differentiating between business logic and presentation logic and understand where in Rails this code should be/
+identifying and utilizing the main Rails Rake tasks and generators.
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
